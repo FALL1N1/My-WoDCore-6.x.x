@@ -1,0 +1,37 @@
+###############################################
+# Trinity Core Bnet Server configuration file #
+###############################################
+[bnetserver]
+
+#AUTH SERVER SETTINGS
+LogsDir = "logs\bnet"
+MaxPingTime = 30
+WorldserverListenPort = 1118
+BattlenetPort = 1119
+
+###############################################################
+#BindIP = "127.0.0.1"
+BindIP = "169.254.213.110"
+###############################################################
+
+PidFile = ""
+UseProcessors = 0
+ProcessPriority = 0
+RealmsStateUpdateDelay = 10
+WrongPass.MaxCount = 0
+WrongPass.BanTime = 600
+WrongPass.BanType = 0
+
+#MYSQL SETTINGS
+LoginDatabaseInfo = "127.0.0.1;3306;root;ascent;auth"
+LoginDatabase.WorkerThreads = 1
+Wrong.Password.Login.Logging = 0
+
+#LOGGING SYSTEM SETTINGS
+Appender.Console=1,2,0
+Appender.Bnet=2,2,0,Battlenet.log,w
+
+Logger.root=3,Console Bnet
+Logger.realmlist=3,Console Bnet
+Logger.session=3,Console Bnet
+Logger.session.packets=3,Console Bnet

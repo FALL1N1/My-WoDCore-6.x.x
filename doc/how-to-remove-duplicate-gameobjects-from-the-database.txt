@@ -1,0 +1,50 @@
+
+  
+Administrators 
+ 
+3,237 posts 
+1301 thanks 
+• Reputation: 1,925 
+LocationNorth Pole 
+Time Online: 29D 20H 53M 36S 
+
+
+User's Awards
+
+                                            
+
+  
+
+Posted 24 January 2015 - 01:49 PM 
+
+
+Before typing out the rest of this post, I will note that this is about removing gameobjects which have the same displayId as one another from the database. Not everyone will have a good reason to do this, so if you’re not very experienced in editing the database, then do not attempt to remove the duplicate gameobjects. If you know of any additional information, notice an error, etc.. just comment and I’ll do my best to keep this post updated. In this post I will assume that you know enough to be able to execute SQL queries on your database.
+
+To remove the objects with the most duplicates you must first run a query to find the objects. After you’ve done this once, you will be able to use a combined set of queries to make the job a little bit faster, so for now just execute the following query.
+
+
+SELECT entry, name, displayId FROM gameobject_template WHERE displayId = (SELECT displayId FROM gameobject_template WHERE name NOT LIKE "Gold Coins %" GROUP BY displayId ORDER BY COUNT(*) DESC LIMIT 1);
+
+
+
+SELECT entry, name, displayId FROM gameobject_template WHERE displayId = (SELECT displayId FROM gameobject_template WHERE name NOT LIKE "Gold Coins %" GROUP BY displayId ORDER BY COUNT(*) DESC LIMIT 1);
+
+Now that you have a list of duplicated objects, just select the entry and displayId from the first record (row) and enter them into the variable declarations in the set of queries below. After you execute the following set of queries, a new set of objects will be selected and you can continue to repeat the deletion process.
+
+Don’t worry about objects disappearing in the game world, the query replaces all objects that use the same displayId with the object whose entry and displayId you are entering into the set of queries. This is really only useful for a highly customized server as any normal server would find a lot of the in-game objects broken or not working properly after deleting the duplicates.
+
+
+SET @entry := ENTER_THE_ENTRY_OF_THE_FIRST_RECORD_HERE; SET @display := ENTER_THE_DISPLAY_ID_OF_THE_FIRST_RECORD_HERE; UPDATE gameobject JOIN gameobject_template ON gameobject.id = gameobject_template.entry SET gameobject.id = @entry WHERE gameobject_template.entry != @entry AND gameobject_template.displayId = @display; DELETE FROM gameobject_template WHERE displayId = @display AND entry != @entry; SELECT entry, name, displayId FROM gameobject_template WHERE displayId = (SELECT displayId FROM gameobject_template WHERE name NOT LIKE "Gold Coins %" GROUP BY displayId ORDER BY COUNT(*) DESC LIMIT 1);
+
+
+SET @entry := ENTER_THE_ENTRY_OF_THE_FIRST_RECORD_HERE;
+SET @display := ENTER_THE_DISPLAY_ID_OF_THE_FIRST_RECORD_HERE;
+
+UPDATE gameobject JOIN gameobject_template ON gameobject.id = gameobject_template.entry SET gameobject.id = @entry WHERE gameobject_template.entry != @entry AND gameobject_template.displayId = @display;
+
+DELETE FROM gameobject_template WHERE displayId = @display AND entry != @entry;
+SELECT entry, name, displayId FROM gameobject_template WHERE displayId = (SELECT displayId FROM gameobject_template WHERE name NOT LIKE "Gold Coins %" GROUP BY displayId ORDER BY COUNT(*) DESC LIMIT 1);
+
+original posted by walkryst
+
+
