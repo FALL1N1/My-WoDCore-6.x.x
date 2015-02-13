@@ -89,7 +89,6 @@ int main(int argc, char** argv)
     TC_LOG_INFO("server.bnetserver", "  Warlords Of Draenor 19342 Core          \\/__/\n");
     TC_LOG_INFO("server.bnetserver", "  Project WoD 2015(c) by DorianGray ");
     TC_LOG_INFO("server.bnetserver", "  <http://TrinityCore.org/> \n");
-    TC_LOG_INFO("server.bnetserver", "  Last TC Commit : 97e62c0ea5a53da71dfb788dfa88f429d04dd8c4");
     TC_LOG_INFO("server.bnetserver", "Using configuration file %s.", configFile.c_str());
     TC_LOG_INFO("server.bnetserver", "Using SSL version: %s (library: %s)", OPENSSL_VERSION_TEXT, SSLeay_version(SSLEAY_VERSION));
     TC_LOG_INFO("server.bnetserver", "Using Boost version: %i.%i.%i", BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
