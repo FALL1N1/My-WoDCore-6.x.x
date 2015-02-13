@@ -18,6 +18,7 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
+#include "ThroneOfThunder.h"
 
 enum Texts
 {

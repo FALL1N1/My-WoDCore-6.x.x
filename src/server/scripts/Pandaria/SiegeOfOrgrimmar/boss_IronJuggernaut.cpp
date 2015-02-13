@@ -18,6 +18,7 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
+#include "SiegeOfOrgrimmar.h"
 
 enum Texts
 {

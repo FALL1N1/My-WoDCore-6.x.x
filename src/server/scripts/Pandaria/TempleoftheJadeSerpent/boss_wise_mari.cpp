@@ -18,6 +18,7 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
+#include "temple_of_the_jade_serpent.h"
 
 enum Texts
 {
