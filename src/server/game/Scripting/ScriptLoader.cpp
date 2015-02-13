@@ -44,6 +44,7 @@ void AddSC_boss_gekkan();
 void AddSC_boss_trial_of_king();
 void AddSC_boss_xin_the_weaponmaster();
 
+// Mogushan Vaults
 void AddSC_instance_mogushan_vaults();
 void AddSC_boss_elegon();
 void AddSC_boss_feng_the_accursed();
@@ -52,35 +53,41 @@ void AddSC_boss_the_spirit_kings();
 void AddSC_boss_the_stone_guard();
 void AddSC_boss_will_of_the_emperor();
 
+// Shadopan Monastery
 void AddSC_instance_shadopan_monastery();
 void AddSC_boss_gu_cloudstrike();
 void AddSC_boss_master_snowdrift();
 void AddSC_boss_sha_of_violence();
 void AddSC_boss_taran_zhu();
 
+// Temple of the Jade Serpent
 void AddSC_instance_temple_of_the_jade_serpent();
 void AddSC_boss_liu_flameheart();
 void AddSC_boss_lorewalker_stonestep();
 void AddSC_boss_sha_of_doubt();
 void AddSC_boss_wise_mari();
 
+// Terrace of Endless Spring
 void AddSC_instance_terrace_of_the_endless_spring();
 void AddSC_boss_lei_shi();
 void AddSC_boss_protectors_of_the_endless();
 void AddSC_boss_sha_of_fear();
 void AddSC_boss_tsulong();
 
+// Stormstout Brewery
 void AddSC_instance_stormstout_brewery();
 void AddSC_boss_hoptallus();
 void AddSC_boss_ook_ook();
 void AddSC_boss_yan_zhu();
 
+// Gate of the Setting Sun
 void AddSC_instance_gate_of_the_setting_sun();
 void AddSC_boss_commander_rimok();
 void AddSC_boss_raigonn();
 void AddSC_boss_saboteur_kiptilak();
 void AddSC_boss_striker_gadok();
 
+// Heart of Fear
 void AddSC_instance_heart_of_fear();
 void AddSC_boss_ambershaper_unsok();
 void AddSC_boss_blade_lord_tayak();
@@ -89,6 +96,7 @@ void AddSC_boss_grand_empress_shekzeer();
 void AddSC_boss_imperial_vizier_zorlok();
 void AddSC_boss_wind_lord_meljarak();
 
+// Siege of Niuzao Temple
 void AddSC_instance_siege_of_niuzao_temple();
 void AddSC_boss_commander_vojak();
 void AddSC_boss_general_pavalak();
@@ -128,10 +136,10 @@ void AddSC_boss_TwinConsorts();
 void AddSC_boss_LeiShen();
 void AddSC_boss_Raden();
 
-// Garrisons
+// Garrison
 void AddSC_Garrison_Frostwall();
 
-// Draenor worldbosses
+// Draenor Worldbosses
 void AddSC_worldboss_Drov();
 void AddSC_worldboss_Tarlna();
 void AddSC_worldboss_Rukhmar();
@@ -1739,13 +1747,13 @@ void AddPandariaScripts()
     AddSC_boss_LeiShen();
     AddSC_boss_Raden();
 
-    // mogushan_palace
+    // Mogushan Palace
     AddSC_instance_mogushan_palace();
     AddSC_boss_gekkan();
     AddSC_boss_trial_of_king();
     AddSC_boss_xin_the_weaponmaster();
 
-    // mogushan_vaults
+    // Mogushan Vaults
     AddSC_instance_mogushan_vaults();
     AddSC_boss_elegon();
     AddSC_boss_feng_the_accursed();
@@ -1754,28 +1762,28 @@ void AddPandariaScripts()
     AddSC_boss_the_stone_guard();
     AddSC_boss_will_of_the_emperor();
 
-    // shadopan_monastery
+    // Shadopan Monastery
     AddSC_instance_shadopan_monastery();
     AddSC_boss_gu_cloudstrike();
     AddSC_boss_master_snowdrift();
     AddSC_boss_sha_of_violence();
     AddSC_boss_taran_zhu();
 
-    // temple_of_the_jade_serpent
+    // Temple of the Jade Serpent
     AddSC_instance_temple_of_the_jade_serpent();
     AddSC_boss_liu_flameheart();
     AddSC_boss_lorewalker_stonestep();
     AddSC_boss_sha_of_doubt();
     AddSC_boss_wise_mari();
 
-    // terrace_of_the_endless_spring
+    // Terrace of Endless Spring
     AddSC_instance_terrace_of_the_endless_spring();
     AddSC_boss_lei_shi();
     AddSC_boss_protectors_of_the_endless();
     AddSC_boss_sha_of_fear();
     AddSC_boss_tsulong();
 
-    // stormstout_brewery
+    // Stormstout Brewery
     AddSC_instance_stormstout_brewery();
     AddSC_boss_hoptallus();
     AddSC_boss_ook_ook();
@@ -1788,7 +1796,7 @@ void AddPandariaScripts()
     AddSC_boss_saboteur_kiptilak();
     AddSC_boss_striker_gadok();
 
-    // heart_of_fear
+    // Heart of Fear
     AddSC_instance_heart_of_fear();
     AddSC_boss_ambershaper_unsok();
     AddSC_boss_blade_lord_tayak();
@@ -1797,7 +1805,7 @@ void AddPandariaScripts()
     AddSC_boss_imperial_vizier_zorlok();
     AddSC_boss_wind_lord_meljarak();
 
-    // siege_of_niuzao_temple
+    // Siege of Niuzao Temple
     AddSC_instance_siege_of_niuzao_temple();
     AddSC_boss_commander_vojak();
     AddSC_boss_general_pavalak();
@@ -1814,12 +1822,12 @@ void AddDreanorScripts()
     //Garrison
     AddSC_Garrison_Frostwall();
 
-    // Draenor worldbosses
+    // Draenor Worldbosses
     AddSC_worldboss_Drov();
     AddSC_worldboss_Tarlna();
     AddSC_worldboss_Rukhmar();
 
-    // Auchindoun
+    // Auchindoun Dungeon
     AddSC_instance_Auchindoun();
     AddSC_boss_azzakel();
     AddSC_boss_Nyami();

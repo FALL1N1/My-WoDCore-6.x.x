@@ -113,14 +113,14 @@ set(scripts_STAT_SRCS
   Pandaria/ScarletHalls/boss_armsmaster_harlan.cpp
   Pandaria/ScarletHalls/boss_flameweaver_koegler.cpp
   Pandaria/ScarletHalls/boss_houndmaster_braun.cpp
-  Pandaria/ScarletMonastery/scarlet_monastery.h
-  Pandaria/ScarletMonastery/instance_scarlet_monastery.cpp
+  //Pandaria/ScarletMonastery/scarlet_monastery.h
+  //Pandaria/ScarletMonastery/instance_scarlet_monastery.cpp
   Pandaria/ScarletMonastery/boss_brother_korloff.cpp
   Pandaria/ScarletMonastery/boss_high_inquisitor_whitemane.cpp
   Pandaria/ScarletMonastery/boss_thalnos_the_souldrender.cpp
-  Pandaria/Scholomance/scholomance.h
-  Pandaria/Scholomance/instance_scholomance.cpp
-  Pandaria/Scholomance/boss_darkmaster_gandling.cpp
+  //Pandaria/Scholomance/scholomance.h
+  //Pandaria/Scholomance/instance_scholomance.cpp
+  //Pandaria/Scholomance/boss_darkmaster_gandling.cpp
   Pandaria/Scholomance/boss_instructor_chillheart.cpp
   Pandaria/Scholomance/boss_jandice_barov.cpp
   Pandaria/Scholomance/boss_lilian_voss.cpp
