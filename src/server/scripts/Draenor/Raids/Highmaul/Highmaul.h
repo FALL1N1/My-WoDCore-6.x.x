@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 8;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_BRACKENSPORE             = 0,
@@ -38,14 +38,14 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_BRACKENSPORE              = 78491,
-    NPC_KARGATHBLADEFIST          = 78714,
-    NPC_KORAGH                    = 79015,
-    NPC_MARGOK                    = 77428,
-    NPC_TECTUS                    = 78948,
-    NPC_THEBUTCHER                = 77404,
-    NPC_TWINOGRONPOL              = 78238,
-    NPC_TWINOGRONPHEMOS           = 78237
+    BOSS_BRACKENSPORE              = 78491,
+    BOSS_KARGATHBLADEFIST          = 78714,
+    BOSS_KORAGH                    = 79015,
+    BOSS_MARGOK                    = 77428,
+    BOSS_TECTUS                    = 78948,
+    BOSS_THEBUTCHER                = 77404,
+    BOSS_TWINOGRONPOL              = 78238,
+    BOSS_TWINOGRONPHEMOS           = 78237
 };
 
 enum GameObjectIds

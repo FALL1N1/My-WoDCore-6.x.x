@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 4;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_BONEMAW                  = 0,
@@ -34,10 +34,10 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_BONEMAW                   = 75452,
-    NPC_NERZHUL                   = 76407,
-    NPC_NHALLISH                  = 75829,
-    NPC_SADANABLOODFURY           = 75509
+    BOSS_BONEMAW                  = 75452,
+    BOSS_NERZHUL                  = 76407,
+    BOSS_NHALLISH                 = 75829,
+    BOSS_SADANABLOODFURY          = 75509
 };
 
 enum GameObjectIds

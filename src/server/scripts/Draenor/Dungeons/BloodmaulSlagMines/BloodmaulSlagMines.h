@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 4;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_CRUSHTO                  = 0,
@@ -34,10 +34,10 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_CRUSHTO                   = 75927,
-    NPC_GUGGROK                   = 76177,
-    NPC_MAGMOLATUS       	  = 75839,
-    NPC_ROLTALL     		  = 77734
+    BOSS_CRUSHTO                  = 75927,
+    BOSS_GUGGROK                  = 76177,
+    BOSS_MAGMOLATUS       	  = 75839,
+    BOSS_ROLTALL     		  = 77734
 };
 
 enum GameObjectIds

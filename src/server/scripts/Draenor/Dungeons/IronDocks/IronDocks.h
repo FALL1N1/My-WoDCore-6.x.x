@@ -19,25 +19,26 @@
 #ifndef IRONDOCKS_H
 #define IRONDOCKS_H
 
+#define IDScriptName "instance_IronDocks"
 #define DataHeader "ID"
 
 uint32 const EncounterCount       = 4;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_GRIMRAILENFORCERS        = 0,
     DATA_NOKGAR                   = 1,
-    DATA_79852                    = 2,
+    DATA_OSHIR                    = 2,
     DATA_SKULLOC                  = 3
 };
 
 enum CreatureIds
 {
-    NPC_GRIMRAILENFORCERS         = 80805,
-    NPC_NOKGAR                    = 81297,
-    NPC_OSHIR                     = 79852,
-    NPC_SKULLOC                   = 83612
+    BOSS_GRIMRAILENFORCERS         = 80805,
+    BOSS_NOKGAR                    = 81297,
+    BOSS_OSHIR                     = 79852,
+    BOSS_SKULLOC                   = 83612
 };
 
 enum GameObjectIds

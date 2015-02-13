@@ -22,24 +22,73 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : Auchindoun Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "Auchindoun.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_Auchindoun : public InstanceMapScript
 {
-public:
-    instance_Auchindoun() : InstanceMapScript("instance_Auchindoun", 1182) { }
+    public:
+        instance_Auchindoun() : InstanceMapScript("instance_Auchindoun", 1182) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_Auchindoun_InstanceMapScript(map);
-    }
+        struct instance_Auchindoun_InstanceMapScript : public InstanceScript
+        {
+            instance_Auchindoun_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_Auchindoun_InstanceMapScript : public InstanceScript
-    {
-        instance_Auchindoun_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_AZZAKAEL:
+                    case BOSS_NYAMI:
+                    case BOSS_PROTECTOROFAUCH:
+                    case BOSS_TERONGOR:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_AZZAKAEL:
+                    case DATA_NYAMI:
+                    case DATA_PROTECTOROFAUCH:
+                    case DATA_TERONGOR:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_Auchindoun_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_Auchindoun()

@@ -22,24 +22,73 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : GrimrailDepot Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "GrimrailDepot.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_GrimrailDepot : public InstanceMapScript
 {
-public:
-    instance_GrimrailDepot() : InstanceMapScript("instance_GrimrailDepot", 1208) { }
+    public:
+        instance_GrimrailDepot() : InstanceMapScript("instance_GrimrailDepot", 1208) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_GrimrailDepot_InstanceMapScript(map);
-    }
+        struct instance_GrimrailDepot_InstanceMapScript : public InstanceScript
+        {
+            instance_GrimrailDepot_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_GrimrailDepot_InstanceMapScript : public InstanceScript
-    {
-        instance_GrimrailDepot_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_BLACKROCKASSAULTCOMMANDER:
+                    case BOSS_ROCKET:
+                    case BOSS_BORKA:
+                    case BOSS_THUNDERLORDGENERAL:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_BLACKROCKASSAULTCOMMANDER:
+                    case DATA_ROCKET:
+                    case DATA_BORKA:
+                    case DATA_THUNDERLORDGENERAL:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_GrimrailDepot_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_GrimrailDepot()

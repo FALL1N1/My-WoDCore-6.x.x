@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 4;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_ARAKNATH                 = 0,
@@ -34,10 +34,10 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_ARAKNATH                  = 76141,
-    NPC_RANJIT                    = 75964,
-    NPC_RUKHRAN                   = 76143,
-    NPC_VIRYX                     = 76266
+    BOSS_ARAKNATH                  = 76141,
+    BOSS_RANJIT                    = 75964,
+    BOSS_RUKHRAN                   = 76143,
+    BOSS_VIRYX                     = 76266
 };
 
 enum GameObjectIds

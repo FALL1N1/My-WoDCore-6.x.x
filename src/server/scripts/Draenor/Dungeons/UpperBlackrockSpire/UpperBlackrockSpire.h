@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 5;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_GORASHAN                 = 0,
@@ -35,11 +35,11 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_GORASHAN                  = 76413,
-    NPC_KYRAK                     = 76021,
-    NPC_RAGEWING                  = 76585,
-    NPC_THARBEK                   = 79912,
-    NPC_ZAELA                     = 77120
+    BOSS_GORASHAN                  = 76413,
+    BOSS_KYRAK                     = 76021,
+    BOSS_RAGEWING                  = 76585,
+    BOSS_THARBEK                   = 79912,
+    BOSS_ZAELA                     = 77120
 };
 
 enum GameObjectIds

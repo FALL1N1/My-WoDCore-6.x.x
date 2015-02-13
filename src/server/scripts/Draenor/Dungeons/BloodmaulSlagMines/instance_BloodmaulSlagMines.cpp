@@ -22,24 +22,73 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : BloodmaulSlagMines Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "BloodmaulSlagMines.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_BloodmaulSlagMines : public InstanceMapScript
 {
-public:
-    instance_BloodmaulSlagMines() : InstanceMapScript("instance_BloodmaulSlagMines", 1175) { }
+    public:
+        instance_BloodmaulSlagMines() : InstanceMapScript("instance_BloodmaulSlagMines", 1175) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_BloodmaulSlagMines_InstanceMapScript(map);
-    }
+        struct instance_BloodmaulSlagMines_InstanceMapScript : public InstanceScript
+        {
+            instance_BloodmaulSlagMines_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_BloodmaulSlagMines_InstanceMapScript : public InstanceScript
-    {
-        instance_BloodmaulSlagMines_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_CRUSHTO:
+                    case BOSS_GUGGROK:
+                    case BOSS_MAGMOLATUS:
+                    case BOSS_ROLTALL:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_CRUSHTO:
+                    case DATA_GUGGROK:
+                    case DATA_MAGMOLATUS:
+                    case DATA_ROLTALL:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_BloodmaulSlagMines_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_BloodmaulSlagMines()

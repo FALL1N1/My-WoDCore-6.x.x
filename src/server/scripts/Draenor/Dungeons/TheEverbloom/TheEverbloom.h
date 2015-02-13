@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 7;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_ANCIENTPROTECTOR         = 0,
@@ -37,13 +37,13 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_ANCIENTPROTECTOR          = 83893,
-    NPC_PROTECTORDULHU            = 83894,
-    NPC_PROTECTORGOLA             = 83892,
-    NPC_ARCHMAGESOL               = 82682,
-    NPC_WITHERBARK                = 81522,
-    NPC_XERITAC                   = 84550,
-    NPC_YALNU                     = 83846
+    BOSS_ANCIENTPROTECTOR          = 83893,
+    BOSS_PROTECTORDULHU            = 83894,
+    BOSS_PROTECTORGOLA             = 83892,
+    BOSS_ARCHMAGESOL               = 82682,
+    BOSS_WITHERBARK                = 81522,
+    BOSS_XERITAC                   = 84550,
+    BOSS_YALNU                     = 83846
 };
 
 enum GameObjectIds

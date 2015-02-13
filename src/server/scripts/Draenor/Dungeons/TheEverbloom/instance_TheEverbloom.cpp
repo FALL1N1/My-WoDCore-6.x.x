@@ -22,24 +22,79 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : TheEverbloom Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "TheEverbloom.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_TheEverbloom : public InstanceMapScript
 {
-public:
-    instance_TheEverbloom() : InstanceMapScript("instance_TheEverbloom", 1279) { }
+    public:
+        instance_TheEverbloom() : InstanceMapScript("instance_TheEverbloom", 1279) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_TheEverbloom_InstanceMapScript(map);
-    }
+        struct instance_TheEverbloom_InstanceMapScript : public InstanceScript
+        {
+            instance_TheEverbloom_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_TheEverbloom_InstanceMapScript : public InstanceScript
-    {
-        instance_TheEverbloom_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_ANCIENTPROTECTOR:
+                    case BOSS_PROTECTORDULHU:
+                    case BOSS_PROTECTORGOLA:
+                    case BOSS_ARCHMAGESOL:
+                    case BOSS_WITHERBARK:
+                    case BOSS_XERITAC:
+                    case BOSS_YALNU:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_ANCIENTPROTECTOR:
+                    case DATA_PROTECTORDULHU:
+                    case DATA_PROTECTORGOLA:
+                    case DATA_ARCHMAGESOL:
+                    case DATA_WITHERBARK:
+                    case DATA_XERITAC:
+                    case DATA_YALNU:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_TheEverbloom_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_TheEverbloom()

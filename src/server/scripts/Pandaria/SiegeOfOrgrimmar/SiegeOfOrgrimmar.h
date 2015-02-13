@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 14;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_Immerseus                 = 0,
@@ -44,20 +44,20 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_Immerseus                 = 71543,
-    NPC_TheFallenProtectors       = 71480,
-    NPC_Norushen                  = 71967,
-    NPC_ShaOfPride                = 71734,
-    NPC_Galakras                  = 72249,
-    NPC_IronJuggernaut            = 71466,
-    NPC_KorKron                   = 71859,
-    NPC_GeneralNazgrim            = 71515,
-    NPC_Malkorok                  = 71454,
-    NPC_SpoilsOfPandaria          = 73152,
-    NPC_Thok                      = 71529,
-    NPC_SiegecrafterBlackfuse     = 71504,
-    NPC_ParagonsOfTheKlaxxi       = 71161,
-    NPC_GarroshHellscream         = 71865
+    BOSS_Immerseus                 = 71543,
+    BOSS_TheFallenProtectors       = 71480,
+    BOSS_Norushen                  = 71967,
+    BOSS_ShaOfPride                = 71734,
+    BOSS_Galakras                  = 72249,
+    BOSS_IronJuggernaut            = 71466,
+    BOSS_KorKron                   = 71859,
+    BOSS_GeneralNazgrim            = 71515,
+    BOSS_Malkorok                  = 71454,
+    BOSS_SpoilsOfPandaria          = 73152,
+    BOSS_Thok                      = 71529,
+    BOSS_SiegecrafterBlackfuse     = 71504,
+    BOSS_ParagonsOfTheKlaxxi       = 71161,
+    BOSS_GarroshHellscream         = 71865
 };
 
 enum GameObjectIds

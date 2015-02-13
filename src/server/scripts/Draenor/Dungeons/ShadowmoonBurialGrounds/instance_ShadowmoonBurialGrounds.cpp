@@ -22,24 +22,73 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : ShadowmoonBurialGrounds Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "ShadowmoonBurialGrounds.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_ShadowmoonBurialGrounds : public InstanceMapScript
 {
-public:
-    instance_ShadowmoonBurialGrounds() : InstanceMapScript("instance_ShadowmoonBurialGrounds", 1176) { }
+    public:
+        instance_ShadowmoonBurialGrounds() : InstanceMapScript("instance_ShadowmoonBurialGrounds", 1176) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_ShadowmoonBurialGrounds_InstanceMapScript(map);
-    }
+        struct instance_ShadowmoonBurialGrounds_InstanceMapScript : public InstanceScript
+        {
+            instance_ShadowmoonBurialGrounds_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_ShadowmoonBurialGrounds_InstanceMapScript : public InstanceScript
-    {
-        instance_ShadowmoonBurialGrounds_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_BONEMAW:
+                    case BOSS_NERZHUL:
+                    case BOSS_NHALLISH:
+                    case BOSS_SADANABLOODFURY:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_BONEMAW:
+                    case DATA_NERZHUL:
+                    case DATA_NHALLISH:
+                    case DATA_SADANABLOODFURY:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_ShadowmoonBurialGrounds_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_ShadowmoonBurialGrounds()

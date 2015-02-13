@@ -19,24 +19,26 @@
 #ifndef GRIMRAILDEPOT_H
 #define GRIMRAILDEPOT_H
 
+#define GDScriptName "instance_GrimrailDepot"
 #define DataHeader "GD"
 
-uint32 const EncounterCount       = 3;
+uint32 const EncounterCount       = 4;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_BLACKROCKASSAULTCOMMANDER 	 = 0,
-    DATA_ROCKETANDBORKA                  = 1,
-    DATA_THUNDERLORDGENERAL              = 2,
+    DATA_ROCKET                          = 1,
+    DATA_BORKA                           = 2,
+    DATA_THUNDERLORDGENERAL              = 3,
 };
 
 enum CreatureIds
 {
-    NPC_BLACKROCKASSAULTCOMMANDER        = 79545,
-    NPC_ROCKETANDBORKA                   = 77803,
-    NPC_ROCKETANDBORKA2                  = 77816,
-    NPC_THUNDERLORDGENERAL		 = 80005,
+    BOSS_BLACKROCKASSAULTCOMMANDER        = 79545,
+    BOSS_ROCKET		               	 = 77803,
+    BOSS_BORKA                            = 77816,
+    BOSS_THUNDERLORDGENERAL		 = 80005,
 };
 
 enum GameObjectIds

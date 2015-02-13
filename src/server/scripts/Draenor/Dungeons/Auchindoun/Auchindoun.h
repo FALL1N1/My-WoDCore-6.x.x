@@ -19,11 +19,12 @@
 #ifndef AUCHINDOUN_H
 #define AUCHINDOUN_H
 
+#define GDScriptName "instance_Auchindoun"
 #define DataHeader "AU"
 
 uint32 const EncounterCount       = 4;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_AZZAKAEL                 = 0,
@@ -34,10 +35,10 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_AZZAKAEL                  = 75927,
-    NPC_NYAMI                     = 76177,
-    NPC_PROTECTOROFAUCH     	  = 75839,
-    NPC_TERONGOR     		  = 77734
+    BOSS_AZZAKAEL                  = 75927,
+    BOSS_NYAMI                     = 76177,
+    BOSS_PROTECTOROFAUCH     	   = 75839,
+    BOSS_TERONGOR     		   = 77734
 };
 
 enum GameObjectIds

@@ -43,19 +43,19 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_Jinrokh                   = 69465,
-    NPC_Horridon                  = 68476,
-    NPC_Council                   = 69132,
-    NPC_Tortos                    = 67977,
-    NPC_Megaera                   = 68065,
-    NPC_JiKun                     = 69712,
-    NPC_Durumu                    = 68036,
-    NPC_Primordius                = 69017,
-    NPC_DarkAnimus                = 69427,
-    NPC_IronQon                   = 68078,
-    NPC_TwinConsorts              = 68905,
-    NPC_LeiShen                   = 68397,
-    NPC_Raden                     = 69473
+    BOSS_Jinrokh                   = 69465,
+    BOSS_Horridon                  = 68476,
+    BOSS_Council                   = 69132,
+    BOSS_Tortos                    = 67977,
+    BOSS_Megaera                   = 68065,
+    BOSS_JiKun                     = 69712,
+    BOSS_Durumu                    = 68036,
+    BOSS_Primordius                = 69017,
+    BOSS_DarkAnimus                = 69427,
+    BOSS_IronQon                   = 68078,
+    BOSS_TwinConsorts              = 68905,
+    BOSS_LeiShen                   = 68397,
+    BOSS_Raden                     = 69473
 };
 
 enum GameObjectIds

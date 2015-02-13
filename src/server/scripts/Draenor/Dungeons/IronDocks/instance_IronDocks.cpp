@@ -22,24 +22,73 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : IronDocks Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "IronDocks.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_IronDocks : public InstanceMapScript
 {
-public:
-    instance_IronDocks() : InstanceMapScript("instance_IronDocks", 1195) { }
+    public:
+        instance_IronDocks() : InstanceMapScript("instance_IronDocks", 1195) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_IronDocks_InstanceMapScript(map);
-    }
+        struct instance_IronDocks_InstanceMapScript : public InstanceScript
+        {
+            instance_IronDocks_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_IronDocks_InstanceMapScript : public InstanceScript
-    {
-        instance_IronDocks_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_GRIMRAILENFORCERS:
+                    case BOSS_NOKGAR:
+                    case BOSS_OSHIR:
+                    case BOSS_SKULLOC:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_GRIMRAILENFORCERS:
+                    case DATA_NOKGAR:
+                    case DATA_OSHIR:
+                    case DATA_SKULLOC:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_IronDocks_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_IronDocks()

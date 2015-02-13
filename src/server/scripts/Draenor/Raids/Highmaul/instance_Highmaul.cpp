@@ -22,24 +22,81 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : Highmaul Raid # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "Highmaul.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_Highmaul : public InstanceMapScript
 {
-public:
-    instance_Highmaul() : InstanceMapScript("instance_Highmaul", 1228) { }
+    public:
+        instance_Highmaul() : InstanceMapScript("instance_Highmaul", 1228) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_Highmaul_InstanceMapScript(map);
-    }
+        struct instance_Highmaul_InstanceMapScript : public InstanceScript
+        {
+            instance_Highmaul_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_Highmaul_InstanceMapScript : public InstanceScript
-    {
-        instance_Highmaul_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_BRACKENSPORE:
+                    case BOSS_KARGATHBLADEFIST:
+                    case BOSS_KORAGH:
+                    case BOSS_MARGOK:
+                    case BOSS_TECTUS:
+                    case BOSS_THEBUTCHER:
+                    case BOSS_TWINOGRONPOL:
+                    case BOSS_TWINOGRONPHEMOS:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_BRACKENSPORE:
+                    case DATA_KARGATHBLADEFIST:
+                    case DATA_KORAGH:
+                    case DATA_MARGOK:
+                    case DATA_TECTUS:
+                    case DATA_THEBUTCHER:
+                    case DATA_TWINOGRONPOL:
+                    case DATA_TWINOGRONPHEMOS:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_Highmaul_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_Highmaul()

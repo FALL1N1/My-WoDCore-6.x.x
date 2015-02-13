@@ -22,24 +22,73 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : Skyreach Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "Skyreach.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_Skyreach : public InstanceMapScript
 {
-public:
-    instance_Skyreach() : InstanceMapScript("instance_Skyreach", 1209) { }
+    public:
+        instance_Skyreach() : InstanceMapScript("instance_Skyreach", 1209) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_Skyreach_InstanceMapScript(map);
-    }
+        struct instance_Skyreach_InstanceMapScript : public InstanceScript
+        {
+            instance_Skyreach_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_Skyreach_InstanceMapScript : public InstanceScript
-    {
-        instance_Skyreach_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_ARAKNATH:
+                    case BOSS_RANJIT:
+                    case BOSS_RUKHRAN:
+                    case BOSS_VIRYX:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_ARAKNATH:
+                    case DATA_RANJIT:
+                    case DATA_RUKHRAN:
+                    case DATA_VIRYX:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_Skyreach_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_Skyreach()

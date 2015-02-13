@@ -23,7 +23,7 @@
 
 uint32 const EncounterCount       = 10;
 
-enum DataTypes
+enum Data
 {
     // Encounter States/Boss GUIDs
     DATA_GRUUL                    = 0,
@@ -40,16 +40,16 @@ enum DataTypes
 
 enum CreatureIds
 {
-    NPC_GRUUL                     = 76877,
-    NPC_OREGORGER                 = 77182,
-    NPC_THEBLASTFURNACE           = 76809,
-    NPC_HANSGARAND                = 76973,
-    NPC_FLAMEBENDERKAGRAZ         = 76814,
-    NPC_KROMOG                    = 77692,
-    NPC_BEASTLORDDARMAC           = 76865,
-    NPC_OPERATORTHOGAR            = 76906,
-    NPC_THEIRONMAIDENS            = 77477,
-    NPC_BLACKHAND                 = 77325
+    BOSS_GRUUL                     = 76877,
+    BOSS_OREGORGER                 = 77182,
+    BOSS_THEBLASTFURNACE           = 76809,
+    BOSS_HANSGARAND                = 76973,
+    BOSS_FLAMEBENDERKAGRAZ         = 76814,
+    BOSS_KROMOG                    = 77692,
+    BOSS_BEASTLORDDARMAC           = 76865,
+    BOSS_OPERATORTHOGAR            = 76906,
+    BOSS_THEIRONMAIDENS            = 77477,
+    BOSS_BLACKHAND                 = 77325
 };
 
 enum GameObjectIds

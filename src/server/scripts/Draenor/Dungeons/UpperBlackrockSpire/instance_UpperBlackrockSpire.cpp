@@ -22,24 +22,75 @@ Without it, the party doing random dungeon won't get satchel of spoils and
 gets instead the deserter debuff.
 */
 
+/* # Script : UpperBlackrockSpire Dungeon # */
+
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "UpperBlackrockSpire.h"
 
+/* Notes : What is missing ? : - Some visuals and texts
+*/
+
+
 class instance_UpperBlackrockSpire : public InstanceMapScript
 {
-public:
-    instance_UpperBlackrockSpire() : InstanceMapScript("instance_UpperBlackrockSpire", 1358) { }
+    public:
+        instance_UpperBlackrockSpire() : InstanceMapScript("instance_UpperBlackrockSpire", 1358) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* map) const override
-    {
-        return new instance_UpperBlackrockSpire_InstanceMapScript(map);
-    }
+        struct instance_UpperBlackrockSpire_InstanceMapScript : public InstanceScript
+        {
+            instance_UpperBlackrockSpire_InstanceMapScript(Map* map) : InstanceScript(map)
+            {
+                SetHeaders(DataHeader);
+                SetBossNumber(EncounterCount);
 
-    struct instance_UpperBlackrockSpire_InstanceMapScript : public InstanceScript
-    {
-        instance_UpperBlackrockSpire_InstanceMapScript(Map* map) : InstanceScript(map) { }
-    };
+            }
+
+            void OnCreatureCreate(Creature* creature) override
+            {
+                switch (creature->GetEntry())
+                {
+                    case BOSS_GORASHAN:
+                    case BOSS_KYRAK:
+                    case BOSS_RAGEWING:
+                    case BOSS_THARBEK:
+                    case BOSS_ZAELA:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            bool SetBossState(uint32 type, EncounterState state) override
+            {
+                if (!InstanceScript::SetBossState(type, state))
+                    return false;
+
+                if (state != DONE)
+                   return true;
+
+                switch (type)
+                {
+                    case DATA_GORASHAN:
+                    case DATA_KYRAK:
+                    case DATA_RAGEWING:
+                    case DATA_THARBEK:
+                    case DATA_ZAELA:
+                        break;
+                    default:
+                        return true;
+                }
+
+                return true;
+            }
+
+
+        };
+
+        InstanceScript* GetInstanceScript(InstanceMap* map) const override
+        {
+            return new instance_UpperBlackrockSpire_InstanceMapScript(map);
+        }
 };
 
 void AddSC_instance_UpperBlackrockSpire()
