@@ -21,31 +21,31 @@
 
 enum Texts
 {
-    SAY_AGGRO       = 0,
-    SAY_EARTHQUAKE  = 1,
-    SAY_OVERRUN     = 2,
-    SAY_SLAY        = 3,
-    SAY_DEATH       = 4
+    SAY_AGGRO       		= 0,
+    SAY_FREEZING_SNARE  	= 1,
+    SAY_DIFFUSED_ENERGY     	= 2,
+    SAY_SLAY        		= 3,
+    SAY_DEATH       		= 4
 };
 
 enum Spells
 {
-    SPELL_EARTHQUAKE        = 163447,
-    SPELL_SUNDER_ARMOR      = 162407,
-    SPELL_CHAIN_LIGHTNING   = 161588,
-    SPELL_OVERRUN           = 161588,
-    SPELL_ENRAGE            = 163447,
-    SPELL_MARK_DEATH        = 162058,
-    SPELL_AURA_DEATH        = 153616
+    SPELL_FREEZING_SNARE        = 162066,
+    SPELL_SPINNING_SPEAR      	= 162407,
+    SPELL_MARK   		= 163447,
+    SPELL_DIFFUSED_ENERGY       = 161588,
+    SPELL_ENRAGE            	= 176033,
+    SPELL_MARK_DEATH        	= 162058,
+    SPELL_AURA_DEATH        	= 153616
 };
 
 enum Events
 {
-    EVENT_ENRAGE    = 1,
-    EVENT_ARMOR     = 2,
-    EVENT_CHAIN     = 3,
-    EVENT_QUAKE     = 4,
-    EVENT_OVERRUN   = 5
+    EVENT_ENRAGE    		= 1,
+    EVENT_SPINNING_SPEAR     	= 2,
+    EVENT_MARK     		= 3,
+    EVENT_FREEZING_SNARE    	= 4,
+    EVENT_DIFFUSED_ENERGY   	= 5
 };
 
 class boss_ThunderlordGeneral : public CreatureScript
@@ -69,10 +69,10 @@ class boss_ThunderlordGeneral : public CreatureScript
             {
                 _events.Reset();
                 _events.ScheduleEvent(EVENT_ENRAGE, 0);
-                _events.ScheduleEvent(EVENT_ARMOR, urand(5000, 13000));
-                _events.ScheduleEvent(EVENT_CHAIN, urand(10000, 30000));
-                _events.ScheduleEvent(EVENT_QUAKE, urand(25000, 35000));
-                _events.ScheduleEvent(EVENT_OVERRUN, urand(30000, 45000));
+                _events.ScheduleEvent(EVENT_SPINNING_SPEAR, urand(5000, 13000));
+                _events.ScheduleEvent(EVENT_MARK, urand(10000, 30000));
+                _events.ScheduleEvent(EVENT_FREEZING_SNARE, urand(25000, 35000));
+                _events.ScheduleEvent(EVENT_DIFFUSED_ENERGY, urand(30000, 45000));
                 Initialize();
             }
 
@@ -126,32 +126,32 @@ class boss_ThunderlordGeneral : public CreatureScript
                                 _inEnrage = true;
                             }
                             break;
-                        case EVENT_OVERRUN:
-                            Talk(SAY_OVERRUN);
-                            DoCastVictim(SPELL_OVERRUN);
-                            _events.ScheduleEvent(EVENT_OVERRUN, urand(25000, 40000));
+                        case EVENT_DIFFUSED_ENERGY:
+                            Talk(SAY_DIFFUSED_ENERGY);
+                            DoCastVictim(SPELL_DIFFUSED_ENERGY);
+                            _events.ScheduleEvent(EVENT_DIFFUSED_ENERGY, urand(25000, 40000));
                             break;
-                        case EVENT_QUAKE:
+                        case EVENT_FREEZING_SNARE:
                             if (urand(0, 1))
                                 return;
 
-                            Talk(SAY_EARTHQUAKE);
+                            Talk(SAY_FREEZING_SNARE);
 
                             //remove enrage before casting earthquake because enrage + earthquake = 16000dmg over 8sec and all dead
                             if (_inEnrage)
                                 me->RemoveAurasDueToSpell(SPELL_ENRAGE);
 
-                            DoCast(me, SPELL_EARTHQUAKE);
-                            _events.ScheduleEvent(EVENT_QUAKE, urand(30000, 55000));
+                            DoCast(me, SPELL_FREEZING_SNARE);
+                            _events.ScheduleEvent(EVENT_FREEZING_SNARE, urand(30000, 55000));
                             break;
-                        case EVENT_CHAIN:
+                        case EVENT_MARK:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
-                                DoCast(target, SPELL_CHAIN_LIGHTNING);
-                            _events.ScheduleEvent(EVENT_CHAIN, urand(7000, 27000));
+                                DoCast(target, SPELL_MARK);
+                            _events.ScheduleEvent(EVENT_MARK, urand(7000, 27000));
                             break;
-                        case EVENT_ARMOR:
-                            DoCastVictim(SPELL_SUNDER_ARMOR);
-                            _events.ScheduleEvent(EVENT_ARMOR, urand(10000, 25000));
+                        case EVENT_SPINNING_SPEAR:
+                            DoCastVictim(SPELL_SPINNING_SPEAR);
+                            _events.ScheduleEvent(EVENT_SPINNING_SPEAR, urand(10000, 25000));
                             break;
                         default:
                             break;

@@ -21,31 +21,31 @@
 
 enum Texts
 {
-    SAY_AGGRO       = 0,
-    SAY_EARTHQUAKE  = 1,
-    SAY_OVERRUN     = 2,
-    SAY_SLAY        = 3,
-    SAY_DEATH       = 4
+    SAY_AGGRO       		= 0,
+    SAY_MORTAR 	 		= 1,
+    SAY_SUPPRESSIVE_FIRE     	= 2,
+    SAY_SLAY        		= 3,
+    SAY_DEATH       		= 4
 };
 
 enum Spells
 {
-    SPELL_EARTHQUAKE        = 160681,
-    SPELL_SUNDER_ARMOR      = 166570,
-    SPELL_CHAIN_LIGHTNING   = 160681,
-    SPELL_OVERRUN           = 166570,
-    SPELL_ENRAGE            = 163550,
-    SPELL_MARK_DEATH        = 160680,
-    SPELL_AURA_DEATH        = 160943
+    SPELL_MORTAR         		= 163550,
+    SPELL_SUPPRESSIVE_FIRE_TARGET       = 160680,
+    SPELL_SHRAPNEL_BLAST   		= 160943,
+    SPELL_SUPPRESSIVE_FIRE           	= 160681,
+    SPELL_SLAGBLAST            		= 166570,
+    SPELL_MARK_DEATH        		= 176033,
+    SPELL_AURA_DEATH        		= 166340
 };
 
 enum Events
 {
-    EVENT_ENRAGE    = 1,
-    EVENT_ARMOR     = 2,
-    EVENT_CHAIN     = 3,
-    EVENT_QUAKE     = 4,
-    EVENT_OVERRUN   = 5
+    EVENT_MORTAR    			= 1,
+    EVENT_SUPPRESSIVE_FIRE_TARGET     	= 2,
+    EVENT_SHRAPNEL_BLAST     		= 3,
+    EVENT_SUPPRESSIVE_FIRE     		= 4,
+    EVENT_SLAGBLAST   			= 5
 };
 
 class boss_BlackrockAssaultCommander : public CreatureScript
@@ -68,11 +68,11 @@ class boss_BlackrockAssaultCommander : public CreatureScript
             void Reset() override
             {
                 _events.Reset();
-                _events.ScheduleEvent(EVENT_ENRAGE, 0);
-                _events.ScheduleEvent(EVENT_ARMOR, urand(5000, 13000));
-                _events.ScheduleEvent(EVENT_CHAIN, urand(10000, 30000));
-                _events.ScheduleEvent(EVENT_QUAKE, urand(25000, 35000));
-                _events.ScheduleEvent(EVENT_OVERRUN, urand(30000, 45000));
+                _events.ScheduleEvent(EVENT_MORTAR, 0);
+                _events.ScheduleEvent(EVENT_SUPPRESSIVE_FIRE_TARGET, urand(5000, 13000));
+                _events.ScheduleEvent(EVENT_SHRAPNEL_BLAST, urand(10000, 30000));
+                _events.ScheduleEvent(EVENT_SUPPRESSIVE_FIRE, urand(25000, 35000));
+                _events.ScheduleEvent(EVENT_SLAGBLAST, urand(30000, 45000));
                 Initialize();
             }
 
@@ -118,40 +118,40 @@ class boss_BlackrockAssaultCommander : public CreatureScript
                 {
                     switch (eventId)
                     {
-                        case EVENT_ENRAGE:
+                        case EVENT_MORTAR:
                             if (!HealthAbovePct(20))
                             {
-                                DoCast(me, SPELL_ENRAGE);
-                                _events.ScheduleEvent(EVENT_ENRAGE, 6000);
+                                DoCast(me, SPELL_SLAGBLAST);
+                                _events.ScheduleEvent(EVENT_MORTAR, 6000);
                                 _inEnrage = true;
                             }
                             break;
-                        case EVENT_OVERRUN:
-                            Talk(SAY_OVERRUN);
-                            DoCastVictim(SPELL_OVERRUN);
-                            _events.ScheduleEvent(EVENT_OVERRUN, urand(25000, 40000));
+                        case EVENT_SLAGBLAST:
+                            Talk(SAY_SUPPRESSIVE_FIRE);
+                            DoCastVictim(SPELL_SUPPRESSIVE_FIRE);
+                            _events.ScheduleEvent(EVENT_SLAGBLAST, urand(25000, 40000));
                             break;
-                        case EVENT_QUAKE:
+                        case EVENT_SUPPRESSIVE_FIRE:
                             if (urand(0, 1))
                                 return;
 
-                            Talk(SAY_EARTHQUAKE);
+                            Talk(SAY_MORTAR);
 
                             //remove enrage before casting earthquake because enrage + earthquake = 16000dmg over 8sec and all dead
                             if (_inEnrage)
-                                me->RemoveAurasDueToSpell(SPELL_ENRAGE);
+                                me->RemoveAurasDueToSpell(SPELL_SLAGBLAST);
 
-                            DoCast(me, SPELL_EARTHQUAKE);
-                            _events.ScheduleEvent(EVENT_QUAKE, urand(30000, 55000));
+                            DoCast(me, SPELL_MORTAR);
+                            _events.ScheduleEvent(EVENT_SUPPRESSIVE_FIRE, urand(30000, 55000));
                             break;
-                        case EVENT_CHAIN:
+                        case EVENT_SHRAPNEL_BLAST:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
-                                DoCast(target, SPELL_CHAIN_LIGHTNING);
-                            _events.ScheduleEvent(EVENT_CHAIN, urand(7000, 27000));
+                                DoCast(target, SPELL_SHRAPNEL_BLAST);
+                            _events.ScheduleEvent(EVENT_SHRAPNEL_BLAST, urand(7000, 27000));
                             break;
-                        case EVENT_ARMOR:
-                            DoCastVictim(SPELL_SUNDER_ARMOR);
-                            _events.ScheduleEvent(EVENT_ARMOR, urand(10000, 25000));
+                        case EVENT_SUPPRESSIVE_FIRE_TARGET:
+                            DoCastVictim(SPELL_SUPPRESSIVE_FIRE_TARGET);
+                            _events.ScheduleEvent(EVENT_SUPPRESSIVE_FIRE_TARGET, urand(10000, 25000));
                             break;
                         default:
                             break;

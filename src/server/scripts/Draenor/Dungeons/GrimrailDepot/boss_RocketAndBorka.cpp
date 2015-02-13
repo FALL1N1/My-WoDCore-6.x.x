@@ -21,31 +21,31 @@
 
 enum Texts
 {
-    SAY_AGGRO       = 0,
-    SAY_EARTHQUAKE  = 1,
-    SAY_OVERRUN     = 2,
-    SAY_SLAY        = 3,
-    SAY_DEATH       = 4
+    SAY_AGGRO       	= 0,
+    SAY_VX18B  		= 1,
+    SAY_SLAM     	= 2,
+    SAY_SLAY        	= 3,
+    SAY_DEATH       	= 4
 };
 
 enum Spells
 {
-    SPELL_EARTHQUAKE        = 162500,
-    SPELL_SUNDER_ARMOR      = 162407,
-    SPELL_CHAIN_LIGHTNING   = 161090,
-    SPELL_OVERRUN           = 162617,
-    SPELL_ENRAGE            = 163947,
-    SPELL_MARK_DEATH        = 153234,
-    SPELL_AURA_DEATH        = 153616
+    SPELL_VX18B        		= 162500,
+    SPELL_X2101AMISSILE      	= 162407,
+    SPELL_MADDASH   		= 161090,
+    SPELL_SLAM           	= 162617,
+    SPELL_RECOVERY            	= 163947,
+    SPELL_MARK_DEATH        	= 153234,
+    SPELL_AURA_DEATH        	= 153616
 };
 
 enum Events
 {
-    EVENT_ENRAGE    = 1,
-    EVENT_ARMOR     = 2,
-    EVENT_CHAIN     = 3,
-    EVENT_QUAKE     = 4,
-    EVENT_OVERRUN   = 5
+    EVENT_RECOVERY    		= 1,
+    EVENT_X2101AMISSILE     	= 2,
+    EVENT_MADDASH     		= 3,
+    EVENT_VX18B     		= 4,
+    EVENT_SLAM   		= 5
 };
 
 class boss_RocketAndBorka : public CreatureScript
@@ -68,11 +68,11 @@ class boss_RocketAndBorka : public CreatureScript
             void Reset() override
             {
                 _events.Reset();
-                _events.ScheduleEvent(EVENT_ENRAGE, 0);
-                _events.ScheduleEvent(EVENT_ARMOR, urand(5000, 13000));
-                _events.ScheduleEvent(EVENT_CHAIN, urand(10000, 30000));
-                _events.ScheduleEvent(EVENT_QUAKE, urand(25000, 35000));
-                _events.ScheduleEvent(EVENT_OVERRUN, urand(30000, 45000));
+                _events.ScheduleEvent(EVENT_RECOVERY, 0);
+                _events.ScheduleEvent(EVENT_X2101AMISSILE, urand(5000, 13000));
+                _events.ScheduleEvent(EVENT_MADDASH, urand(10000, 30000));
+                _events.ScheduleEvent(EVENT_VX18B, urand(25000, 35000));
+                _events.ScheduleEvent(EVENT_SLAM, urand(30000, 45000));
                 Initialize();
             }
 
@@ -118,40 +118,40 @@ class boss_RocketAndBorka : public CreatureScript
                 {
                     switch (eventId)
                     {
-                        case EVENT_ENRAGE:
+                        case EVENT_RECOVERY:
                             if (!HealthAbovePct(20))
                             {
-                                DoCast(me, SPELL_ENRAGE);
-                                _events.ScheduleEvent(EVENT_ENRAGE, 6000);
+                                DoCast(me, SPELL_RECOVERY);
+                                _events.ScheduleEvent(EVENT_RECOVERY, 6000);
                                 _inEnrage = true;
                             }
                             break;
-                        case EVENT_OVERRUN:
-                            Talk(SAY_OVERRUN);
-                            DoCastVictim(SPELL_OVERRUN);
-                            _events.ScheduleEvent(EVENT_OVERRUN, urand(25000, 40000));
+                        case EVENT_SLAM:
+                            Talk(SAY_SLAM);
+                            DoCastVictim(SPELL_SLAM);
+                            _events.ScheduleEvent(EVENT_SLAM, urand(25000, 40000));
                             break;
-                        case EVENT_QUAKE:
+                        case EVENT_VX18B:
                             if (urand(0, 1))
                                 return;
 
-                            Talk(SAY_EARTHQUAKE);
+                            Talk(SAY_VX18B);
 
                             //remove enrage before casting earthquake because enrage + earthquake = 16000dmg over 8sec and all dead
                             if (_inEnrage)
-                                me->RemoveAurasDueToSpell(SPELL_ENRAGE);
+                                me->RemoveAurasDueToSpell(SPELL_RECOVERY);
 
-                            DoCast(me, SPELL_EARTHQUAKE);
-                            _events.ScheduleEvent(EVENT_QUAKE, urand(30000, 55000));
+                            DoCast(me, SPELL_VX18B);
+                            _events.ScheduleEvent(EVENT_VX18B, urand(30000, 55000));
                             break;
-                        case EVENT_CHAIN:
+                        case EVENT_MADDASH:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
-                                DoCast(target, SPELL_CHAIN_LIGHTNING);
-                            _events.ScheduleEvent(EVENT_CHAIN, urand(7000, 27000));
+                                DoCast(target, SPELL_MADDASH);
+                            _events.ScheduleEvent(EVENT_MADDASH, urand(7000, 27000));
                             break;
-                        case EVENT_ARMOR:
-                            DoCastVictim(SPELL_SUNDER_ARMOR);
-                            _events.ScheduleEvent(EVENT_ARMOR, urand(10000, 25000));
+                        case EVENT_X2101AMISSILE:
+                            DoCastVictim(SPELL_X2101AMISSILE);
+                            _events.ScheduleEvent(EVENT_X2101AMISSILE, urand(10000, 25000));
                             break;
                         default:
                             break;
